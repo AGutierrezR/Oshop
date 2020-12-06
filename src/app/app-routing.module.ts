@@ -5,6 +5,7 @@ import { AdminProductsComponent } from 'src/app/admin/admin-products/admin-produ
 import { CheckOutComponent } from 'src/app/check-out/check-out.component';
 import { HomeComponent } from 'src/app/home/home.component';
 import { LoginComponent } from 'src/app/login/login.component';
+import { MyOrdersComponent } from 'src/app/my-orders/my-orders.component';
 import { OrderSuccessComponent } from 'src/app/order-success/order-success.component';
 import { ProductsComponent } from 'src/app/products/products.component';
 import { ShoppingCartComponent } from 'src/app/shopping-cart/shopping-cart.component';
@@ -12,6 +13,7 @@ import { ShoppingCartComponent } from 'src/app/shopping-cart/shopping-cart.compo
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductsComponent },
+  { path: 'my-orders', component: MyOrdersComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'checkout', component: CheckOutComponent },
   { path: 'order-success', component: OrderSuccessComponent },
