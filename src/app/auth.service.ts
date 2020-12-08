@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
 import firebase from 'firebase/app';
 import { Observable } from 'rxjs';
+import { UserService } from 'src/app/user.service';
 
 interface User {
   displayName: string;
@@ -17,20 +18,23 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {
     this.user$ = afAuth.authState;
   }
 
-  login(): void {
+  async login(): Promise<void> {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const credentials = await this.afAuth.signInWithPopup(provider);
     const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-    localStorage.setItem('returnUrl', returnUrl);
-    this.afAuth
-      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then(() => this.router.navigateByUrl(returnUrl));
+    this.router.navigateByUrl(returnUrl);
+
+    return this.userService.save(credentials.user);
   }
 
-  logout(): void {
-    this.afAuth.signOut();
+  async logout(): Promise<boolean> {
+    await this.afAuth.signOut();
+    return this.router.navigateByUrl('/');
   }
 }
