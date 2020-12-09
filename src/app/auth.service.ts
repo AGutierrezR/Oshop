@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { UserService } from 'src/app/user.service';
 
 interface User {
+  uid: string;
   displayName: string;
 }
 
