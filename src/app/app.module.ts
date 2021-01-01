@@ -23,6 +23,9 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
+import { MinDirective } from './shared/validators/min/min.directive';
+import { UrlDirective } from './shared/validators/url/url.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +40,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     AdminOrdersComponent,
     LoginComponent,
     ProductFormComponent,
+    MinDirective,
+    UrlDirective,
   ],
   imports: [
     BrowserModule,
