@@ -17,7 +17,6 @@ export class CategoryService {
   getCategories(): Observable<ProductCategory[]> {
     return this.db
       .list('/categories', (ref) => {
-        console.log(ref);
         return ref.orderByChild('name');
       })
       .snapshotChanges()
