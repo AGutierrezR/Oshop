@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/category.service';
+import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/product.service';
 
 @Component({
@@ -28,7 +29,7 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
-  save(product): void {
+  save(product: Product): void {
     if (this.productForm.invalid) {
       return;
     }

@@ -2,14 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-
-interface Product {
-  $key?: string;
-  title: string;
-  price: number;
-  category: string;
-  imageUrl: string;
-}
+import { Product } from 'src/app/models/product';
 
 const initialState = {
   title: null,
