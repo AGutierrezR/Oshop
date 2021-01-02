@@ -61,6 +61,10 @@ export class ProductService {
     return this.db.object('/products/' + id).update(product);
   }
 
+  delete(id: string): Promise<void> {
+    return this.db.object('/products/' + id).remove();
+  }
+
   setInitialState(): void {
     this.productSubject.next({ ...initialState });
   }

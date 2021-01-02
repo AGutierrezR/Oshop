@@ -105,15 +105,19 @@
           <span *ngIf="imageUrl.errors?.url">Please enter a valid URL.</span>
         </div>
       </div>
-      <div class="btn-toolbar">
-        <button
-          type="submit"
-          class="btn btn-primary mr-1"
-          [disabled]="!f.valid"
-        >
-          Save
+      <div>
+        <button class="btn btn-primary" [disabled]="!f.valid">Save</button>
+        <button type="button" class="btn btn-warning" (click)="cancel()">
+          Cancel
         </button>
-        <a type="button" class="btn btn-warning" (click)="cancel()"> Cancel </a>
+        <button
+          *ngIf="id"
+          type="button"
+          class="btn btn-danger"
+          (click)="delete()"
+        >
+          Delete
+        </button>
       </div>
     </form>
   </div>
