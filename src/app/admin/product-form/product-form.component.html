@@ -123,7 +123,11 @@
   </div>
   <div class="col-md-6">
     <div class="card">
-      <img [src]="product.imageUrl" class="card-img-top" />
+      <img
+        [src]="product.imageUrl"
+        class="card-img-top"
+        *ngIf="imageUrl.valid"
+      />
       <div class="card-body">
         <h4 class="card-title">{{ product.title }}</h4>
         <p class="card-text">{{ product.price | currency: 'USD' }}</p>
