@@ -1,22 +1,35 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 
 interface Product {
-  $key: string;
+  $key?: string;
   title: string;
   price: number;
+  category: string;
+  imageUrl: string;
 }
+
+const initialState = {
+  title: null,
+  price: 0,
+  category: null,
+  imageUrl: null,
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
+  private productSubject = new BehaviorSubject<Product>({ ...initialState });
+  productStore$ = this.productSubject.asObservable();
+
   constructor(private db: AngularFireDatabase) {}
 
-  create(product): void {
+  create(product: Product): void {
     this.db.list('/products').push(product);
+    this.setInitialState();
   }
 
   getAll(): Observable<Product[]> {
@@ -31,5 +44,20 @@ export class ProductService {
           })
         )
       );
+  }
+
+  setInitialState(): void {
+    this.productSubject.next({ ...initialState });
+  }
+
+  get(id: string): void {
+    this.db
+      .object<Product>('/products/' + id)
+      .valueChanges()
+      .pipe(
+        take(1),
+        map((product) => this.productSubject.next(product))
+      )
+      .subscribe();
   }
 }
