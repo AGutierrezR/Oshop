@@ -12,6 +12,7 @@ import { ProductService } from 'src/app/product.service';
 export class ProductFormComponent implements OnInit {
   @ViewChild(NgForm) productForm: NgForm;
   categories$ = this.categoryService.getCategories();
+  id: string;
 
   constructor(
     private router: Router,
@@ -21,9 +22,9 @@ export class ProductFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.productService.get(id);
+    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id) {
+      this.productService.get(this.id);
     }
   }
 
@@ -31,7 +32,13 @@ export class ProductFormComponent implements OnInit {
     if (this.productForm.invalid) {
       return;
     }
-    this.productService.create(product);
+
+    if (this.id) {
+      this.productService.update(this.id, product);
+    } else {
+      this.productService.create(product);
+    }
+
     this.router.navigate(['/admin/products']);
   }
 

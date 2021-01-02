@@ -46,10 +46,6 @@ export class ProductService {
       );
   }
 
-  setInitialState(): void {
-    this.productSubject.next({ ...initialState });
-  }
-
   get(id: string): void {
     this.db
       .object<Product>('/products/' + id)
@@ -59,5 +55,13 @@ export class ProductService {
         map((product) => this.productSubject.next(product))
       )
       .subscribe();
+  }
+
+  update(id: string, product: Product): Promise<void> {
+    return this.db.object('/products/' + id).update(product);
+  }
+
+  setInitialState(): void {
+    this.productSubject.next({ ...initialState });
   }
 }
