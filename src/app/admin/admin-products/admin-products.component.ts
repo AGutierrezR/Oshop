@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { combineLatest, Observable } from 'rxjs';
+import { debounceTime, map, startWith, tap } from 'rxjs/operators';
 import { ProductService } from 'src/app/product.service';
 
 @Component({
@@ -8,6 +11,16 @@ import { ProductService } from 'src/app/product.service';
 })
 export class AdminProductsComponent implements OnInit {
   products$ = this.productService.getAll();
+  filter: FormControl = new FormControl('');
+  filter$: Observable<string> = this.filter.valueChanges.pipe(startWith(''));
+  filteredProducts$ = combineLatest([this.products$, this.filter$]).pipe(
+    map(([products, query]) =>
+      products.filter(
+        (product) =>
+          product.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
+      )
+    )
+  );
 
   constructor(private productService: ProductService) {}
 
