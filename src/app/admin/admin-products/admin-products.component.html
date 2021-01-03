@@ -9,6 +9,33 @@
     placeholder="Search..."
   />
 </p>
+<div class="d-flex justify-content-between">
+  <ngb-pagination
+    *ngIf="filteredProducts$ | async as product"
+    [collectionSize]="product.length"
+    [(page)]="page"
+    [maxSize]="5"
+    [pageSize]="pageSize"
+    (pageChange)="pagination$.next(null)"
+  >
+  </ngb-pagination>
+
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Limit</span>
+      </div>
+      <input
+        style="width: 5rem"
+        [(ngModel)]="pageSize"
+        type="number"
+        class="form-control"
+        [min]="0"
+        (ngModelChange)="pagination$.next(null)"
+      />
+    </div>
+  </div>
+</div>
 <table class="table">
   <thead>
     <tr>
@@ -18,7 +45,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of filteredProducts$ | async">
+    <tr *ngFor="let product of productsPerPage$ | async">
       <td>{{ product.title }}</td>
       <td>{{ product.price | currency: 'USD' }}</td>
       <td class="text-right">

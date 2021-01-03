@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { combineLatest, Observable } from 'rxjs';
-import { debounceTime, map, startWith, tap } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { ProductService } from 'src/app/product.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class AdminProductsComponent implements OnInit {
   products$ = this.productService.getAll();
   filter: FormControl = new FormControl('');
   filter$: Observable<string> = this.filter.valueChanges.pipe(startWith(''));
+  pagination$ = new BehaviorSubject(null);
   filteredProducts$ = combineLatest([this.products$, this.filter$]).pipe(
     map(([products, query]) =>
       products.filter(
@@ -21,6 +22,20 @@ export class AdminProductsComponent implements OnInit {
       )
     )
   );
+  productsPerPage$ = combineLatest([
+    this.filteredProducts$,
+    this.pagination$,
+  ]).pipe(
+    map(([products]) =>
+      products.slice(
+        (this.page - 1) * this.pageSize,
+        (this.page - 1) * this.pageSize + this.pageSize
+      )
+    )
+  );
+
+  page = 1;
+  pageSize = 5;
 
   constructor(private productService: ProductService) {}
 
