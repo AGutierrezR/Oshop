@@ -10,9 +10,6 @@
           id="title"
           type="text"
           class="form-control"
-          [ngClass]="{
-            'is-invalid': title.invalid && (title.dirty || title.touched)
-          }"
           required
         />
         <div
@@ -35,9 +32,6 @@
             id="price"
             type="number"
             class="form-control"
-            [ngClass]="{
-              'is-invalid': price.invalid && (price.dirty || price.touched)
-            }"
             required
             [min]="0"
           />
@@ -58,10 +52,6 @@
           name="category"
           id="category"
           class="form-control"
-          [ngClass]="{
-            'is-invalid':
-              category.invalid && (category.dirty || category.touched)
-          }"
           required
         >
           <option value=""></option>
@@ -88,10 +78,6 @@
           id="imageUrl"
           type="text"
           class="form-control"
-          [ngClass]="{
-            'is-invalid':
-              imageUrl.invalid && (imageUrl.dirty || imageUrl.touched)
-          }"
           required
           url
         />
