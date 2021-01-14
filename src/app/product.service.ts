@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { Product } from 'src/app/models/product';
+import { toObjectWithKey } from 'src/app/shared/utils/toObjectWithKey';
 
 const initialState = {
   title: null,
@@ -29,25 +30,15 @@ export class ProductService {
     return this.db
       .list('/products')
       .snapshotChanges()
-      .pipe(
-        map((items) =>
-          items.map((item: any) => {
-            const $key = item.payload.key;
-            return { $key, ...item.payload.val() };
-          })
-        )
-      );
+      .pipe(map(toObjectWithKey));
   }
 
   get(id: string): void {
     this.db
       .object<Product>('/products/' + id)
       .valueChanges()
-      .pipe(
-        take(1),
-        map((product) => this.productSubject.next(product))
-      )
-      .subscribe();
+      .pipe(first())
+      .subscribe((product) => this.productSubject.next(product));
   }
 
   update(id: string, product: Product): Promise<void> {
