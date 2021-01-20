@@ -5,7 +5,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { minValidator } from 'src/app/shared/validators/min/min.validator';
+import { minValidator } from '@shared/validators/min/min.validator';
 
 @Directive({
   selector: '[min]',

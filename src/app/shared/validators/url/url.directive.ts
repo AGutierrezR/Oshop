@@ -5,7 +5,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { urlValidator } from 'src/app/shared/validators/url/url.validator';
+import { urlValidator } from '@shared/validators/url/url.validator';
 
 @Directive({
   selector: '[url]',

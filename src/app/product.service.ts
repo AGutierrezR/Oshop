@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { Product } from '@models/product';
+import { toObjectWithKey } from '@shared/utils/toObjectWithKey';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-import { Product } from 'src/app/models/product';
-import { toObjectWithKey } from 'src/app/shared/utils/toObjectWithKey';
 
 const initialState = {
   title: null,

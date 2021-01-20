@@ -8,6 +8,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { environment } from 'src/environments/environment';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
@@ -23,9 +24,9 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
-import { MinDirective } from './shared/validators/min/min.directive';
-import { UrlDirective } from './shared/validators/url/url.directive';
-import { NgModelStatusDirective } from './shared/directive/ng-model-status.directive';
+import { NgModelStatusDirective } from '@shared/directive/ng-model-status.directive';
+import { MinDirective } from '@shared/validators/min/min.directive';
+import { UrlDirective } from '@shared/validators/url/url.directive';
 
 @NgModule({
   declarations: [
