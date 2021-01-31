@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { Product } from '@models/product';
-import { first } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { first, map, take, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingCartService {
   constructor(private db: AngularFireDatabase) {}
+
+  async getCart(): Promise<Observable<unknown>> {
+    const cartId = await this.getOrCreateCartId();
+    return this.db.object('/shopping-carts/' + cartId).valueChanges();
+  }
 
   async addToCart(product: Product): Promise<void> {
     const cartId = await this.getOrCreateCartId();

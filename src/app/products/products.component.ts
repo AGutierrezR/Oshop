@@ -3,12 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ProductService } from 'src/app/product.service';
+import { ShoppingCartService } from 'src/app/shopping-cart.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
 })
 export class ProductsComponent implements OnInit {
+  cart$;
   filterCriteria$ = this.route.queryParamMap.pipe(
     map((params) => params.get('category'))
   );
@@ -25,8 +27,11 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
+    public shoppingCartService: ShoppingCartService,
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  async ngOnInit(): Promise<void> {
+    this.cart$ = await this.shoppingCartService.getCart();
+  }
 }
