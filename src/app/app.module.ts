@@ -27,6 +27,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { NgModelStatusDirective } from '@shared/directive/ng-model-status.directive';
 import { MinDirective } from '@shared/validators/min/min.directive';
 import { UrlDirective } from '@shared/validators/url/url.directive';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { UrlDirective } from '@shared/validators/url/url.directive';
     MinDirective,
     UrlDirective,
     NgModelStatusDirective,
+    ProductFilterComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-import { CategoryService } from 'src/app/category.service';
+import { map } from 'rxjs/operators';
 import { ProductService } from 'src/app/product.service';
 
 @Component({
@@ -10,7 +9,6 @@ import { ProductService } from 'src/app/product.service';
   templateUrl: './products.component.html',
 })
 export class ProductsComponent implements OnInit {
-  categories$ = this.categoryService.getAll();
   filterCriteria$ = this.route.queryParamMap.pipe(
     map((params) => params.get('category'))
   );
@@ -27,7 +25,6 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private categoryService: CategoryService,
     private route: ActivatedRoute
   ) {}
 

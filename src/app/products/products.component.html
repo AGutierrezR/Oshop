@@ -1,23 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-3">
-      <div class="list-group">
-        <a
-          routerLink="/"
-          class="list-group-item list-group-item-action"
-          [class.active]="(filterCriteria$ | async) === null"
-          >All Categories</a
-        >
-        <a
-          *ngFor="let c of categories$ | async"
-          routerLink="/"
-          [queryParams]="{ category: c.$key }"
-          class="list-group-item list-group-item-action"
-          [class.active]="(filterCriteria$ | async) === c.$key"
-        >
-          {{ c.name }}
-        </a>
-      </div>
+      <product-filter
+        [categerySelected]="filterCriteria$ | async"
+      ></product-filter>
     </div>
     <div class="col">
       <div class="row">
