@@ -9,20 +9,7 @@
       <div class="row">
         <ng-container *ngFor="let p of products$ | async; let i = index">
           <div class="col-4">
-            <div class="card">
-              <img
-                class="card-img-top"
-                src="{{ p.imageUrl }}"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <h5 class="card-title">{{ p.title }}</h5>
-                <p class="card-text">
-                  {{ p.price | currency: 'USD' }}
-                </p>
-                <a href="#" class="btn btn-primary">Add to Cart</a>
-              </div>
-            </div>
+            <product-card [product]="p"></product-card>
           </div>
         </ng-container>
       </div>
