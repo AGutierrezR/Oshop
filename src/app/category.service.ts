@@ -15,7 +15,7 @@ interface ProductCategory {
 export class CategoryService {
   constructor(private db: AngularFireDatabase) {}
 
-  getCategories(): Observable<ProductCategory[]> {
+  getAll(): Observable<ProductCategory[]> {
     return this.db
       .list('/categories', (ref) => {
         return ref.orderByChild('name');

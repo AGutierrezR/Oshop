@@ -11,7 +11,7 @@ import { ProductService } from 'src/app/product.service';
 })
 export class ProductFormComponent implements OnInit {
   @ViewChild(NgForm) productForm: NgForm;
-  categories$ = this.categoryService.getCategories();
+  categories$ = this.categoryService.getAll();
   id: string;
 
   constructor(
