@@ -31,7 +31,7 @@ export class ProductsComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  async ngOnInit(): Promise<void> {
-    this.cart$ = await this.shoppingCartService.getCart();
+  ngOnInit(): void {
+    this.cart$ = this.shoppingCartService.getCart();
   }
 }

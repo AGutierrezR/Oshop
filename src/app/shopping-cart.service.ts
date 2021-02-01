@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { Product } from '@models/product';
+import { ShoppingCart } from '@models/shopping-cart';
 import { Observable } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { first, shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -10,9 +11,12 @@ import { first } from 'rxjs/operators';
 export class ShoppingCartService {
   constructor(private db: AngularFireDatabase) {}
 
-  async getCart(): Promise<Observable<unknown>> {
-    const cartId = await this.getOrCreateCartId();
-    return this.db.object('/shopping-carts/' + cartId).valueChanges();
+  getCart(): Observable<ShoppingCart> {
+    const cartId = this.getOrCreateCartId();
+    return this.db
+      .object<ShoppingCart>('/shopping-carts/' + cartId)
+      .valueChanges()
+      .pipe(shareReplay());
   }
 
   async addToCart(product: Product): Promise<void> {
@@ -43,13 +47,13 @@ export class ShoppingCartService {
       });
   }
 
-  private async getOrCreateCartId(): Promise<string> {
+  private getOrCreateCartId(): string {
     const cartId = localStorage.getItem('cartId');
     if (cartId) {
       return cartId;
     }
 
-    const result = await this.createShoppingCart();
+    const result = this.createShoppingCart();
     localStorage.setItem('cartId', result.key);
     return result.key;
   }
