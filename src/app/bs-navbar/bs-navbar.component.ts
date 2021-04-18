@@ -20,15 +20,7 @@ export class BsNavbarComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.cartQuantity$ = this.cartService.getCart().pipe(
-      map((cart) => {
-        let qts = 0;
-        for (const productId in cart.items) {
-          if (cart.items[productId]) {
-            qts += cart.items[productId].quantity;
-          }
-        }
-        return qts;
-      })
+      map((cart) => cart.totalItemsCount)
     );
   }
 

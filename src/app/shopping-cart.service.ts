@@ -3,7 +3,7 @@ import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { Product } from '@models/product';
 import { ShoppingCart } from '@models/shopping-cart';
 import { Observable } from 'rxjs';
-import { first, shareReplay } from 'rxjs/operators';
+import { first, map, shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,10 @@ export class ShoppingCartService {
     return this.db
       .object<ShoppingCart>('/shopping-carts/' + cartId)
       .valueChanges()
-      .pipe(shareReplay());
+      .pipe(
+        map((x) => new ShoppingCart(x.items)),
+        shareReplay()
+      );
   }
 
   async addToCart(product: Product): Promise<void> {
