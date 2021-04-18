@@ -1,19 +1,17 @@
 import { ShoppingCartItem } from '@models/shopping-cart-item';
 
 export class ShoppingCart {
+  items: ShoppingCartItem[] = [];
+
   get totalItemsCount(): number {
-    let qts = 0;
-    for (const productId in this.items) {
-      if (this.items[productId]) {
-        qts += this.items[productId].quantity;
+    return this.items.reduce((acc, item) => item.quantity + acc, 0);
+  }
+
+  constructor(public itemsMap: { [productId: string]: ShoppingCartItem }) {
+    for (const productId in itemsMap) {
+      if (this.itemsMap[productId]) {
+        this.items.push(this.itemsMap[productId]);
       }
     }
-    return qts;
   }
-
-  get productIds(): string[] {
-    return Object.keys(this.items);
-  }
-
-  constructor(public items: ShoppingCartItem[]) {}
 }
