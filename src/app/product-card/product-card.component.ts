@@ -18,7 +18,6 @@ export class ProductCardComponent {
       return 0;
     }
     const item = this.shoppingCart.items[this.product.$key];
-    console.log(item);
     return item ? item.quantity : 0;
   }
 }
