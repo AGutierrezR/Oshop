@@ -11,5 +11,9 @@ export class ShoppingCart {
     return qts;
   }
 
+  get productIds(): string[] {
+    return Object.keys(this.items);
+  }
+
   constructor(public items: ShoppingCartItem[]) {}
 }
