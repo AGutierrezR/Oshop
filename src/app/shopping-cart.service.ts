@@ -18,7 +18,8 @@ export class ShoppingCartService {
       .object<ShoppingCartItemMap>('/shopping-carts/' + cartId)
       .valueChanges()
       .pipe(
-        map((x) => new ShoppingCart(x.items)),
+        map((x) => x.items || {}),
+        map((x) => new ShoppingCart(x)),
         shareReplay()
       );
   }
