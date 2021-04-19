@@ -13,7 +13,7 @@ export class ShoppingCart {
     return this.items.reduce((acc, item) => item.totalPrice + acc, 0);
   }
 
-  constructor(public itemsMap: Partial<ShoppingCartItemMap>) {
+  constructor(private itemsMap: Partial<ShoppingCartItemMap>) {
     for (const productId in itemsMap) {
       if (this.itemsMap[productId]) {
         const item = this.itemsMap[productId];
