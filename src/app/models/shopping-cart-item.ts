@@ -8,4 +8,8 @@ export class ShoppingCartItem {
   get totalPrice(): number {
     return this.price * this.quantity;
   }
+
+  constructor(init?: Partial<ShoppingCartItem>) {
+    Object.assign(this, init);
+  }
 }
