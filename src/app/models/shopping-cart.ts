@@ -16,7 +16,11 @@ export class ShoppingCart {
     for (const productId in itemsMap) {
       if (this.itemsMap[productId]) {
         const item = this.itemsMap[productId];
-        this.items.push(new ShoppingCartItem(item.product, item.quantity));
+        const x = new ShoppingCartItem();
+        Object.assign(x, item);
+        x.$key = productId;
+
+        this.items.push(x);
       }
     }
   }

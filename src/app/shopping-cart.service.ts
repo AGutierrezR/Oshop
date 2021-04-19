@@ -18,25 +18,23 @@ export class ShoppingCartService {
       .object<ShoppingCartItemMap>('/shopping-carts/' + cartId)
       .valueChanges()
       .pipe(
-        map((x) => new ShoppingCart(x.items)),
+        map((x) => (x ? x.items : {})),
+        map((items) => new ShoppingCart(items)),
         shareReplay()
       );
   }
 
   async addToCart(product: Product): Promise<void> {
-    this.updateItemQuantity(product, 1);
+    this.updateItem(product, 1);
   }
 
   async removeFromCart(product: Product): Promise<void> {
-    this.updateItemQuantity(product, -1);
+    this.updateItem(product, -1);
   }
 
-  private async updateItemQuantity(
-    product: Product,
-    change: number
-  ): Promise<void> {
+  private async updateItem(product: Product, change: number): Promise<void> {
     const cartId = await this.getOrCreateCartId();
-    const { $key: productId, ..._product } = product;
+    const { $key: productId, title, imageUrl, price } = product;
 
     const item$ = this.getItem(cartId, productId);
 
@@ -45,7 +43,9 @@ export class ShoppingCartService {
       .pipe(first())
       .subscribe((item) => {
         item$.update({
-          product: _product,
+          title,
+          imageUrl,
+          price,
           quantity: (item.payload.exportVal()?.quantity || 0) + change,
         });
       });
