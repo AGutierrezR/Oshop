@@ -10,7 +10,7 @@ import { ShoppingCartService } from 'src/app/shopping-cart.service';
 export class ShoppingCartComponent implements OnInit {
   cart$: Observable<ShoppingCart>;
 
-  constructor(private shoppingCartService: ShoppingCartService) {}
+  constructor(public shoppingCartService: ShoppingCartService) {}
 
   async ngOnInit(): Promise<void> {
     this.cart$ = await this.shoppingCartService.getCart();

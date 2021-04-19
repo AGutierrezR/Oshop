@@ -32,6 +32,11 @@ export class ShoppingCartService {
     this.updateItem(product, -1);
   }
 
+  async clearCart(): Promise<void> {
+    const cartId = await this.getOrCreateCartId();
+    this.db.object('/shopping-carts/' + cartId + '/items').remove();
+  }
+
   private async updateItem(product: Product, change: number): Promise<void> {
     const cartId = await this.getOrCreateCartId();
     const { $key: productId, title, imageUrl, price } = product;
