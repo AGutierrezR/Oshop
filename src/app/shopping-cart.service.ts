@@ -47,11 +47,18 @@ export class ShoppingCartService {
       .snapshotChanges()
       .pipe(first())
       .subscribe((item) => {
+        const quantity = (item.payload.exportVal()?.quantity || 0) + change;
+
+        if (quantity === 0) {
+          item$.remove();
+          return;
+        }
+
         item$.update({
           title,
           imageUrl,
           price,
-          quantity: (item.payload.exportVal()?.quantity || 0) + change,
+          quantity,
         });
       });
   }
