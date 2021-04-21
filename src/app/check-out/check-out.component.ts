@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { OrderItem } from '@models/order-item';
+import { Order } from '@models/order';
 import { Shipping } from '@models/shipping';
+import { ShoppingCart } from '@models/shopping-cart';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth.service';
@@ -15,15 +16,15 @@ import { ShoppingCartService } from 'src/app/shopping-cart.service';
 export class CheckOutComponent implements OnInit, OnDestroy {
   @ViewChild(NgForm) shippingForm: NgForm;
 
-  destroyComponent$ = new Subject();
+  destroyComponent$: Subject<void> = new Subject();
   shipping: Shipping = {
     name: '',
     addressLine1: '',
     addressLine2: '',
     city: '',
   };
-  items: OrderItem[];
   userId: string;
+  cart: ShoppingCart;
 
   constructor(
     private authService: AuthService,
@@ -33,7 +34,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getUserId();
-    this.getOrderItems();
+    this.getCart();
   }
 
   ngOnDestroy(): void {
@@ -46,13 +47,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const order = {
-      userId: this.userId,
-      datePlaced: new Date().getTime(),
-      shipping: this.shipping,
-      items: this.items,
-    };
-
+    const order = new Order(this.userId, this.shipping, this.cart);
     this.orderService.storeOrder(order);
   }
 
@@ -62,21 +57,9 @@ export class CheckOutComponent implements OnInit, OnDestroy {
       .subscribe((user) => (this.userId = user.uid));
   }
 
-  private async getOrderItems(): Promise<void> {
+  private async getCart(): Promise<void> {
     (await this.shoppingCartService.getCart())
       .pipe(takeUntil(this.destroyComponent$))
-      .subscribe((cart) => {
-        this.items = cart.items.map((i) => {
-          return {
-            product: {
-              title: i.title,
-              imageUrl: i.imageUrl,
-              price: i.price,
-            },
-            quantity: i.quantity,
-            totalPrice: i.totalPrice,
-          };
-        });
-      });
+      .subscribe((cart) => (this.cart = cart));
   }
 }
