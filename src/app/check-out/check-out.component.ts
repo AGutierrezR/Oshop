@@ -4,6 +4,7 @@ import { OrderItem } from '@models/order-item';
 import { Shipping } from '@models/shipping';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { AuthService } from 'src/app/auth.service';
 import { OrderService } from 'src/app/order.service';
 import { ShoppingCartService } from 'src/app/shopping-cart.service';
 
@@ -22,13 +23,16 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     city: '',
   };
   items: OrderItem[];
+  userId: string;
 
   constructor(
+    private authService: AuthService,
     private orderService: OrderService,
     private shoppingCartService: ShoppingCartService
   ) {}
 
   ngOnInit(): void {
+    this.getUserId();
     this.getOrderItems();
   }
 
@@ -43,12 +47,19 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     }
 
     const order = {
+      userId: this.userId,
       datePlaced: new Date().getTime(),
       shipping: this.shipping,
       items: this.items,
     };
 
     this.orderService.storeOrder(order);
+  }
+
+  private getUserId(): void {
+    this.authService.user$
+      .pipe(takeUntil(this.destroyComponent$))
+      .subscribe((user) => (this.userId = user.uid));
   }
 
   private async getOrderItems(): Promise<void> {
