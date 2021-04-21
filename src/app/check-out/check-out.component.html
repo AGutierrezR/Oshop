@@ -1,1 +1,80 @@
-<p>check-out works!</p>
+<h2>Shipping</h2>
+<form #f="ngForm">
+  <div class="form-group">
+    <label for="">Name</label>
+    <input
+      #name="ngModel"
+      name="name"
+      [(ngModel)]="shipping.name"
+      type="text"
+      class="form-control"
+      required
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="name.invalid && (name.dirty || name.touched)"
+    >
+      Name is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="">Address</label>
+    <input
+      #addressLine1="ngModel"
+      name="addressLine1"
+      [(ngModel)]="shipping.addressLine1"
+      type="text"
+      class="form-control"
+      placeholder="Line 1"
+      required
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        addressLine1.invalid && (addressLine1.dirty || addressLine1.touched)
+      "
+    >
+      Address Line 1 is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for=""></label>
+    <input
+      #addressLine2="ngModel"
+      name="addressLine2"
+      [(ngModel)]="shipping.addressLine2"
+      type="text"
+      class="form-control"
+      placeholder="Line 2"
+      required
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        addressLine2.invalid && (addressLine2.dirty || addressLine2.touched)
+      "
+    >
+      Address Line 2 is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="">City</label>
+    <input
+      #city="ngModel"
+      name="city"
+      [(ngModel)]="shipping.city"
+      type="text"
+      class="form-control"
+      required
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="city.invalid && (city.dirty || city.touched)"
+    >
+      City is required.
+    </div>
+  </div>
+  <button (click)="placeOrder()" class="btn btn-primary" [disabled]="!f.valid">
+    Place Order
+  </button>
+</form>
