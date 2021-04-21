@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Order } from '@models/order';
 import { Shipping } from '@models/shipping';
 import { ShoppingCart } from '@models/shopping-cart';
@@ -27,6 +28,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   cart: ShoppingCart;
 
   constructor(
+    private router: Router,
     private authService: AuthService,
     private orderService: OrderService,
     private shoppingCartService: ShoppingCartService
@@ -42,13 +44,14 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     this.destroyComponent$.complete();
   }
 
-  placeOrder(): void {
+  async placeOrder(): Promise<void> {
     if (this.shippingForm.invalid) {
       return;
     }
 
     const order = new Order(this.userId, this.shipping, this.cart);
-    this.orderService.storeOrder(order);
+    const result = await this.orderService.storeOrder(order);
+    this.router.navigate(['/order-success', result.key]);
   }
 
   private getUserId(): void {
