@@ -24,15 +24,11 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
-import { NgModelStatusDirective } from '@shared/directive/ng-model-status.directive';
-import { MinDirective } from '@shared/validators/min/min.directive';
-import { UrlDirective } from '@shared/validators/url/url.directive';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
-import { ProductCardComponent } from './product-card/product-card.component';
-import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 import { CoreModule } from '@core/core.module';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -48,18 +44,14 @@ import { CoreModule } from '@core/core.module';
     AdminOrdersComponent,
     LoginComponent,
     ProductFormComponent,
-    MinDirective,
-    UrlDirective,
-    NgModelStatusDirective,
     ProductFilterComponent,
-    ProductCardComponent,
-    ProductQuantityComponent,
     ShoppingCartSummaryComponent,
     ShippingFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SharedModule,
     CoreModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // firestore
