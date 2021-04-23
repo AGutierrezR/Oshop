@@ -1,4 +1,4 @@
-import { Product } from '@models/product';
+import { Product } from '@core/models/product';
 
 export interface OrderItem {
   product: Omit<Product, 'category'>;

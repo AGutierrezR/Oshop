@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from '@models/product';
-import { ShoppingCart } from '@models/shopping-cart';
+import { Product } from '@core/models/product';
+import { ShoppingCart } from '@core/models/shopping-cart';
+import { ProductService } from '@core/services/product.service';
+import { ShoppingCartService } from '@core/services/shopping-cart.service';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ProductService } from 'src/app/product.service';
-import { ShoppingCartService } from 'src/app/shopping-cart.service';
 
 @Component({
   selector: 'app-products',

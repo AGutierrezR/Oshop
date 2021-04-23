@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { Product } from '@models/product';
-import { toObjectWithKey } from '@shared/utils/toObjectWithKey';
+import { Product } from '@core/models/product';
+import { toObjectWithKey } from '@core/utils/toObjectWithKey';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 

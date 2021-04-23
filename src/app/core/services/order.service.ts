@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { Order } from '@models/order';
-import { toObjectWithKey } from '@shared/utils/toObjectWithKey';
+import { Order } from '@core/models/order';
+import { ShoppingCartService } from '@core/services/shopping-cart.service';
+import { toObjectWithKey } from '@core/utils/toObjectWithKey';
 import { map } from 'rxjs/operators';
-import { ShoppingCartService } from 'src/app/shopping-cart.service';
 
 @Injectable({
   providedIn: 'root',

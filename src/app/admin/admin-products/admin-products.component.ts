@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ProductService } from '@core/services/product.service';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { ProductService } from 'src/app/product.service';
 
 @Component({
   selector: 'app-admin-products',

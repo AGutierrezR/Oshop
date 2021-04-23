@@ -14,7 +14,7 @@
     "module": "es2020",
     "lib": ["es2018", "dom"],
     "paths": {
-      "@models/*": ["src/app/models/*"],
+      "@core/*": ["src/app/core/*"],
       "@shared/*": ["src/app/shared/*"]
     }
   }

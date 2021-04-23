@@ -32,6 +32,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+import { CoreModule } from '@core/core.module';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CoreModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth

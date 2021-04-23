@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppUser } from '@core/models/app-user';
+import { UserService } from '@core/services/user.service';
 import firebase from 'firebase/app';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { AppUser } from 'src/app/models/app-user';
-import { UserService } from 'src/app/user.service';
 
 interface User {
   uid: string;

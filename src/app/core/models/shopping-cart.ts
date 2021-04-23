@@ -1,6 +1,6 @@
-import { Product } from '@models/product';
-import { ShoppingCartItem } from '@models/shopping-cart-item';
-import { ShoppingCartItemMap } from '@models/shopping-cart-item-map';
+import { Product } from '@core/models/product';
+import { ShoppingCartItem } from '@core/models/shopping-cart-item';
+import { ShoppingCartItemMap } from '@core/models/shopping-cart-item-map';
 
 export class ShoppingCart {
   items: ShoppingCartItem[] = [];

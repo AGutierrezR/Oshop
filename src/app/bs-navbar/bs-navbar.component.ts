@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AppUser } from '@models/app-user';
+import { AppUser } from '@core/models/app-user';
+import { AuthService } from '@core/services/auth.service';
+import { ShoppingCartService } from '@core/services/shopping-cart.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AuthService } from 'src/app/auth.service';
-import { ShoppingCartService } from 'src/app/shopping-cart.service';
 
 @Component({
   selector: 'bs-navbar',

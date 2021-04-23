@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from '@models/product';
-import { CategoryService } from 'src/app/category.service';
-import { ProductService } from 'src/app/product.service';
+import { Product } from '@core/models/product';
+import { CategoryService } from '@core/services/category.service';
+import { ProductService } from '@core/services/product.service';
 
 @Component({
   selector: 'app-product-form',

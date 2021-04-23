@@ -1,6 +1,6 @@
-import { OrderItem } from '@models/order-item';
-import { Shipping } from '@models/shipping';
-import { ShoppingCart } from '@models/shopping-cart';
+import { OrderItem } from '@core/models/order-item';
+import { Shipping } from '@core/models/shipping';
+import { ShoppingCart } from '@core/models/shopping-cart';
 
 export class Order {
   datePlaced: number;
