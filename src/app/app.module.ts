@@ -10,9 +10,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { environment } from 'src/environments/environment';
-import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
-import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
-import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
@@ -29,6 +26,7 @@ import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-c
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
+import { AdminModule } from '@admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -40,10 +38,7 @@ import { SharedModule } from '@shared/shared.module';
     CheckOutComponent,
     OrderSuccessComponent,
     MyOrdersComponent,
-    AdminProductsComponent,
-    AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent,
     ProductFilterComponent,
     ShoppingCartSummaryComponent,
     ShippingFormComponent,
@@ -51,8 +46,9 @@ import { SharedModule } from '@shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule,
     CoreModule,
+    SharedModule,
+    AdminModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
