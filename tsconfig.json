@@ -16,7 +16,8 @@
     "paths": {
       "@core/*": ["src/app/core/*"],
       "@shared/*": ["src/app/shared/*"],
-      "@admin/*": ["src/app/admin/*"]
+      "@admin/*": ["src/app/admin/*"],
+      "@shopping/*": ["src/app/shopping/*"]
     }
   }
 }
