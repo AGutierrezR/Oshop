@@ -1,6 +1,4 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { CheckOutComponent } from '@shopping/components/check-out/check-out.component';
 import { MyOrdersComponent } from '@shopping/components/my-orders/my-orders.component';
@@ -13,7 +11,7 @@ import { ShoppingCartComponent } from '@shopping/components/shopping-cart/shoppi
 import { ShoppingRoutingModule } from '@shopping/shopping-routing.module';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, SharedModule, ShoppingRoutingModule],
+  imports: [SharedModule, ShoppingRoutingModule],
   declarations: [
     ProductFilterComponent,
     ProductsComponent,
