@@ -19,9 +19,9 @@ export class BsNavbarComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.cartQuantity$ = this.cartService.getCart().pipe(
-      map((cart) => cart.totalItemsCount)
-    );
+    this.cartQuantity$ = this.cartService
+      .getCart()
+      .pipe(map((cart) => cart.totalItemsCount));
   }
 
   logout(): void {
