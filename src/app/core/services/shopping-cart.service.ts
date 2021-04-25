@@ -28,21 +28,21 @@ export class ShoppingCartService {
       );
   }
 
-  async addToCart(product: Product): Promise<void> {
+  addToCart(product: Product): void {
     this.updateItem(product, 1);
   }
 
-  async removeFromCart(product: Product): Promise<void> {
+  removeFromCart(product: Product): void {
     this.updateItem(product, -1);
   }
 
-  async clearCart(): Promise<void> {
-    const cartId = await this.getOrCreateCartId();
+  clearCart(): void {
+    const cartId = this.getOrCreateCartId();
     this.db.object('/shopping-carts/' + cartId + '/items').remove();
   }
 
-  private async updateItem(product: Product, change: number): Promise<void> {
-    const cartId = await this.getOrCreateCartId();
+  private updateItem(product: Product, change: number): void {
+    const cartId = this.getOrCreateCartId();
     const { $key: productId, title, imageUrl, price } = product;
 
     const item$ = this.getItem(cartId, productId);
