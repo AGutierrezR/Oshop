@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCart } from '@core/models/shopping-cart';
 import { ShoppingCartService } from '@core/services/shopping-cart.service';
+import { ProductQuantityMode } from '@shared/components/product-quantity/product-quantity.component';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,6 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class ShoppingCartComponent implements OnInit {
   cart$: Observable<ShoppingCart>;
+
+  productQuantityMode = ProductQuantityMode.JustQuantity;
 
   constructor(public shoppingCartService: ShoppingCartService) {}
 

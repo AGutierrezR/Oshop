@@ -10,7 +10,7 @@
   <input
     type="text"
     class="form-control bg-light text-center"
-    value="{{ shoppingCart.getQuantity(product) }} in cart"
+    [value]="quantity"
     disabled
     aria-label="Dollar amount (with dot and two decimal places)"
   />
