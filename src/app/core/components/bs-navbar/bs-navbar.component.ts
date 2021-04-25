@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 export class BsNavbarComponent implements OnInit {
   appUser$: Observable<AppUser> = this.auth.appUser$;
   cartQuantity$;
+  isMenuCollapsed = true;
 
   constructor(
     private auth: AuthService,

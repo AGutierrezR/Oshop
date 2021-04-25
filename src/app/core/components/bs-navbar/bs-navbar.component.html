@@ -2,6 +2,7 @@
   <div class="container">
     <a class="navbar-brand" routerLink="/">Oshop</a>
     <button
+      (click)="isMenuCollapsed = !isMenuCollapsed"
       class="navbar-toggler"
       type="button"
       data-toggle="collapse"
@@ -12,8 +13,11 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse" id="bsNavbar">
+    <div
+      [ngbCollapse]="isMenuCollapsed"
+      class="collapse navbar-collapse"
+      id="bsNavbar"
+    >
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" routerLink="/shopping-cart">
