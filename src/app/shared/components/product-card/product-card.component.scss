@@ -1,11 +1,12 @@
 .card {
   margin-bottom: 1.875rem;
 
+  &-img-top {
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+
   &-footer {
     padding: 0;
   }
-}
-
-.btn {
-  cursor: pointer;
 }
