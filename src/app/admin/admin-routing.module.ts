@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { AdminOrdersComponent } from '@admin/components/admin-orders/admin-orders.component';
 import { AdminProductsComponent } from '@admin/components/admin-products/admin-products.component';
 import { ProductFormComponent } from '@admin/components/product-form/product-form.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { AdminAuthGuard } from '@core/guards/admin-auth.guard';
 import { AuthGuard } from '@core/guards/auth.guard';
+import { OrderDetailComponent } from '@shared/components/order-detail/order-detail.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: 'admin/orders',
     component: AdminOrdersComponent,
+    canActivate: [AuthGuard, AdminAuthGuard],
+  },
+  {
+    path: 'admin/orders/:id',
+    component: OrderDetailComponent,
     canActivate: [AuthGuard, AdminAuthGuard],
   },
 ];

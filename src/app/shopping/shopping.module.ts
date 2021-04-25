@@ -9,6 +9,9 @@ import { ShippingFormComponent } from '@shopping/components/shipping-form/shippi
 import { ShoppingCartSummaryComponent } from '@shopping/components/shopping-cart-summary/shopping-cart-summary.component';
 import { ShoppingCartComponent } from '@shopping/components/shopping-cart/shopping-cart.component';
 import { ShoppingRoutingModule } from '@shopping/shopping-routing.module';
+import { OrderDetailComponent } from '../shared/components/order-detail/order-detail.component';
+import { OrderSummaryComponent } from '../shared/components/order-detail/order-summary/order-summary.component';
+import { OrderGeneralComponent } from '../shared/components/order-detail/order-general/order-general.component';
 
 @NgModule({
   imports: [SharedModule, ShoppingRoutingModule],
@@ -21,6 +24,9 @@ import { ShoppingRoutingModule } from '@shopping/shopping-routing.module';
     MyOrdersComponent,
     ShoppingCartSummaryComponent,
     ShippingFormComponent,
+    OrderDetailComponent,
+    OrderSummaryComponent,
+    OrderGeneralComponent,
   ],
 })
 export class ShoppingModule {}

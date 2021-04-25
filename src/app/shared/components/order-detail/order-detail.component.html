@@ -1,0 +1,14 @@
+<ng-container *ngIf="order$ | async as order">
+  <h2>Order Detail</h2>
+  <p>
+    Order date: {{ order.datePlaced | date }} | Order nº: {{ orderId$ | async }}
+  </p>
+  <div class="row">
+    <div class="col-6">
+      <order-general [order]="order"></order-general>
+    </div>
+    <div class="col-6">
+      <order-sumary [order]="order"></order-sumary>
+    </div>
+  </div>
+</ng-container>
