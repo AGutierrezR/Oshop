@@ -35,19 +35,19 @@ export class ShippingFormComponent implements OnInit {
     this.getUserId();
   }
 
-  private getUserId(): void {
-    this.authService.user$
-      .pipe(take(1))
-      .subscribe((user) => (this.userId = user.uid));
-  }
-
-  async placeOrder(): Promise<void> {
+  placeOrder(): void {
     if (this.shippingForm.invalid) {
       return;
     }
 
     const order = new Order(this.userId, this.shipping, this.cart);
-    const result = await this.orderService.placeOrder(order);
+    const result = this.orderService.placeOrder(order);
     this.router.navigate(['/order-success', result.key]);
+  }
+
+  private getUserId(): void {
+    this.authService.user$
+      .pipe(take(1))
+      .subscribe((user) => (this.userId = user.uid));
   }
 }

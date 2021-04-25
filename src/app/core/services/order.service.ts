@@ -27,8 +27,8 @@ export class OrderService {
       .pipe(map(toObjectWithKey));
   }
 
-  async placeOrder(order: Order): Promise<any> {
-    const result = await this.db.list('/orders').push(order);
+  placeOrder(order: Order): any {
+    const result = this.db.list('/orders').push(order);
     this.shoppingCartService.clearCart();
     return result;
   }
