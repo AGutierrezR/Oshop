@@ -10,6 +10,10 @@ import { first, map, shareReplay } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ShoppingCartService {
+  cartQuantity$: Observable<number> = this.getCart().pipe(
+    map((cart) => cart.totalItemsCount)
+  );
+
   constructor(private db: AngularFireDatabase) {}
 
   getCart(): Observable<ShoppingCart> {
