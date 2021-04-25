@@ -1,21 +1,22 @@
-<div class="row no-gutters align-items-center">
-  <div class="col-2">
-    <button
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span
       (click)="cartService.removeFromCart(product)"
-      class="btn btn-secondary btn-block"
+      class="btn btn-secondary"
     >
-      -
-    </button>
+      <i class="fa fa-minus"></i>
+    </span>
   </div>
-  <div class="col text-center">
-    {{ shoppingCart.getQuantity(product) }} in cart
-  </div>
-  <div class="col-2">
-    <button
-      (click)="cartService.addToCart(product)"
-      class="btn btn-secondary btn-block"
-    >
-      +
-    </button>
+  <input
+    type="text"
+    class="form-control bg-light text-center"
+    value="{{ shoppingCart.getQuantity(product) }} in cart"
+    disabled
+    aria-label="Dollar amount (with dot and two decimal places)"
+  />
+  <div class="input-group-append">
+    <span (click)="cartService.addToCart(product)" class="btn btn-secondary">
+      <i class="fa fa-plus"></i>
+    </span>
   </div>
 </div>
