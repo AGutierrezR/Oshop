@@ -8,7 +8,6 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AdminModule } from '@admin/admin.module';
 import { CoreModule } from '@core/core.module';
 import { ShoppingModule } from '@shopping/shopping.module';
 import { environment } from 'src/environments/environment';
@@ -22,7 +21,6 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     CoreModule,
     ShoppingModule,
-    AdminModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth

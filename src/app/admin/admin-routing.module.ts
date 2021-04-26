@@ -10,27 +10,27 @@ import { OrderDetailComponent } from '@shared/components/order-detail/order-deta
 
 const routes: Routes = [
   {
-    path: 'admin/products/new',
+    path: 'products/new',
     component: ProductFormComponent,
     canActivate: [AuthGuard, AdminAuthGuard],
   },
   {
-    path: 'admin/products/:id',
+    path: 'products/:id',
     component: ProductFormComponent,
     canActivate: [AuthGuard, AdminAuthGuard],
   },
   {
-    path: 'admin/products',
+    path: 'products',
     component: AdminProductsComponent,
     canActivate: [AuthGuard, AdminAuthGuard],
   },
   {
-    path: 'admin/orders',
+    path: 'orders',
     component: AdminOrdersComponent,
     canActivate: [AuthGuard, AdminAuthGuard],
   },
   {
-    path: 'admin/orders/:id',
+    path: 'orders/:id',
     component: OrderDetailComponent,
     canActivate: [AuthGuard, AdminAuthGuard],
     resolve: { order: OrderResolver },

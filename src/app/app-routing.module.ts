@@ -6,6 +6,11 @@ import { ProductsComponent } from '@shopping/components/products/products.compon
 const routes: Routes = [
   { path: '', component: ProductsComponent },
   { path: 'login', component: LoginComponent },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
+  },
 ];
 
 @NgModule({
