@@ -3,22 +3,28 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@core/guards/auth.guard';
 import { OrderResolver } from '@core/resolvers/order.resolver';
 import { OrderDetailComponent } from '@shared/components/order-detail/order-detail.component';
+import { OrderListComponent } from '@shared/components/order-list/order-list.component';
 import { CheckOutComponent } from '@shopping/components/check-out/check-out.component';
-import { MyOrdersComponent } from '@shopping/components/my-orders/my-orders.component';
 import { OrderSuccessComponent } from '@shopping/components/order-success/order-success.component';
 import { ProductsComponent } from '@shopping/components/products/products.component';
 import { ShoppingCartComponent } from '@shopping/components/shopping-cart/shopping-cart.component';
+import { OrdersResolver } from '@shopping/services/orders.resolver';
 
 const routes: Routes = [
   { path: 'products', component: ProductsComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
 
-  { path: 'my-orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
+  {
+    path: 'my-orders',
+    component: OrderListComponent,
+    canActivate: [AuthGuard],
+    resolve: { orders: OrdersResolver },
+  },
   {
     path: 'my-orders/:id',
-    resolve: { order: OrderResolver },
-    canActivate: [AuthGuard],
     component: OrderDetailComponent,
+    canActivate: [AuthGuard],
+    resolve: { order: OrderResolver },
   },
   { path: 'checkout', component: CheckOutComponent, canActivate: [AuthGuard] },
   {
@@ -31,5 +37,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+  providers: [OrdersResolver],
 })
 export class ShoppingRoutingModule {}

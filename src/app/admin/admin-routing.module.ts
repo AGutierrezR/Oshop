@@ -1,12 +1,13 @@
-import { AdminOrdersComponent } from '@admin/components/admin-orders/admin-orders.component';
 import { AdminProductsComponent } from '@admin/components/admin-products/admin-products.component';
 import { ProductFormComponent } from '@admin/components/product-form/product-form.component';
+import { OrdersResolver as AdminOrdersResolver } from '@admin/services/admin-orders.resolver';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminAuthGuard } from '@core/guards/admin-auth.guard';
 import { AuthGuard } from '@core/guards/auth.guard';
 import { OrderResolver } from '@core/resolvers/order.resolver';
 import { OrderDetailComponent } from '@shared/components/order-detail/order-detail.component';
+import { OrderListComponent } from '@shared/components/order-list/order-list.component';
 
 const routes: Routes = [
   {
@@ -26,8 +27,9 @@ const routes: Routes = [
   },
   {
     path: 'orders',
-    component: AdminOrdersComponent,
+    component: OrderListComponent,
     canActivate: [AuthGuard, AdminAuthGuard],
+    resolve: { orders: AdminOrdersResolver },
   },
   {
     path: 'orders/:id',
@@ -40,5 +42,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+  providers: [AdminOrdersResolver],
 })
 export class AdminRoutingModule {}
