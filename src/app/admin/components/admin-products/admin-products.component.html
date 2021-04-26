@@ -1,5 +1,5 @@
 <p>
-  <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
+  <a routerLink="new" class="btn btn-primary">New Product</a>
 </p>
 <p>
   <input
@@ -50,9 +50,7 @@
         <td>{{ product.title }}</td>
         <td>{{ product.price | currency: 'USD' }}</td>
         <td class="text-right">
-          <a
-            [routerLink]="['/admin/products/', product.$key]"
-            class="btn btn-outline-success"
+          <a [routerLink]="[product.$key]" class="btn btn-outline-success"
             >Edit</a
           >
           <button

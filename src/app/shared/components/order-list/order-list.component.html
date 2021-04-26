@@ -12,8 +12,8 @@
       <tr *ngFor="let order of orders">
         <td>{{ order.shipping.name }}</td>
         <td>{{ order.datePlaced | date }}</td>
-        <td>
-          <a routerLink="{{ order.$key }}">View</a>
+        <td class="text-right">
+          <a [routerLink]="[order.$key]" class="btn btn-outline-info">View</a>
         </td>
       </tr>
     </tbody>
