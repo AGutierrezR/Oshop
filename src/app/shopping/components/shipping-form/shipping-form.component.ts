@@ -11,7 +11,6 @@ import { take } from 'rxjs/operators';
 @Component({
   selector: 'shipping-form',
   templateUrl: './shipping-form.component.html',
-  styleUrls: ['./shipping-form.component.scss'],
 })
 export class ShippingFormComponent implements OnInit {
   @ViewChild(NgForm) shippingForm: NgForm;
