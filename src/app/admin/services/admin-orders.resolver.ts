@@ -7,7 +7,7 @@ import {
 import { Order } from '@core/models/order';
 import { OrderService } from '@core/services/order.service';
 import { Observable } from 'rxjs';
-import { first, tap } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 
 @Injectable()
 export class OrdersResolver implements Resolve<Order[]> {
@@ -17,6 +17,6 @@ export class OrdersResolver implements Resolve<Order[]> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Order[]> {
-    return this.orderService.getOrders().pipe(tap(console.log), first());
+    return this.orderService.getOrders().pipe(first());
   }
 }
