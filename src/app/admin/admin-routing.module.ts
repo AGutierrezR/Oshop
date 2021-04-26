@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminAuthGuard } from '@core/guards/admin-auth.guard';
 import { AuthGuard } from '@core/guards/auth.guard';
+import { OrderResolver } from '@core/resolvers/order.resolver';
 import { OrderDetailComponent } from '@shared/components/order-detail/order-detail.component';
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
     path: 'admin/orders/:id',
     component: OrderDetailComponent,
     canActivate: [AuthGuard, AdminAuthGuard],
+    resolve: { order: OrderResolver },
   },
 ];
 

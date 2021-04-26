@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Order } from '@core/models/order';
 
 @Component({
-  selector: 'order-sumary',
+  selector: 'order-summary',
   templateUrl: './order-summary.component.html',
   styleUrls: ['./order-summary.component.scss'],
 })
