@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 @Injectable()
-export class OrdersResolver implements Resolve<Order[]> {
+export class AdminOrdersResolver implements Resolve<Order[]> {
   constructor(private orderService: OrderService) {}
 
   resolve(

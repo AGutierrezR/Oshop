@@ -1,6 +1,6 @@
 import { AdminProductsComponent } from '@admin/components/admin-products/admin-products.component';
 import { ProductFormComponent } from '@admin/components/product-form/product-form.component';
-import { OrdersResolver as AdminOrdersResolver } from '@admin/services/admin-orders.resolver';
+import { AdminOrdersResolver } from '@admin/services/admin-orders.resolver';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminAuthGuard } from '@core/guards/admin-auth.guard';
