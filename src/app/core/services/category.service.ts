@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { toObjectWithKey } from '@core/utils/toObjectWithKey';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 
 export interface ProductCategory {
   $key?: string;
@@ -28,7 +28,7 @@ export class CategoryService {
         return ref.orderByChild('name');
       })
       .snapshotChanges()
-      .pipe(map(toObjectWithKey));
+      .pipe(map(toObjectWithKey), shareReplay());
   }
 
   update(id: string, category: ProductCategory): Promise<void> {

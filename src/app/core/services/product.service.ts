@@ -3,7 +3,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Product } from '@core/models/product';
 import { toObjectWithKey } from '@core/utils/toObjectWithKey';
 import { Observable } from 'rxjs';
-import { first, map } from 'rxjs/operators';
+import { first, map, shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,7 @@ export class ProductService {
     return this.db
       .list('/products')
       .snapshotChanges()
-      .pipe(map(toObjectWithKey));
+      .pipe(map(toObjectWithKey), shareReplay());
   }
 
   get(id: string): Observable<Product> {
