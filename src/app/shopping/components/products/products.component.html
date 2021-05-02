@@ -1,18 +1,16 @@
-<div class="container">
-  <div class="row">
-    <div class="col-3">
-      <product-filter
-        [categerySelected]="filterCriteria$ | async"
-      ></product-filter>
-    </div>
-    <div class="col">
-      <div class="row" *ngIf="cart$ | async as cart">
-        <ng-container *ngFor="let p of products$ | async; let i = index">
-          <div class="col-4">
-            <product-card [product]="p" [shoppingCart]="cart"></product-card>
-          </div>
-        </ng-container>
-      </div>
+<div class="row">
+  <div class="col-12 col-md-4 col-lg-3 mb-4">
+    <product-filter
+      [categerySelected]="filterCriteria$ | async"
+    ></product-filter>
+  </div>
+  <div class="col-12 col-md-8 col-lg-9">
+    <div class="row" *ngIf="cart$ | async as cart">
+      <ng-container *ngFor="let p of products$ | async; let i = index">
+        <div class="col-12 col-md-6 col-lg-4">
+          <product-card [product]="p" [shoppingCart]="cart"></product-card>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>

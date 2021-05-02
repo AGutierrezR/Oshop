@@ -10,39 +10,45 @@
     placeholder="Search..."
   />
 </p>
-<div class="d-flex justify-content-between">
-  <ngb-pagination
-    *ngIf="filteredProducts$ | async as product"
-    [collectionSize]="product.length"
-    [(page)]="page"
-    [maxSize]="5"
-    [pageSize]="pageSize"
-    (pageChange)="pagination$.next(null)"
-  >
-  </ngb-pagination>
 
-  <div class="form-group">
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Limit</span>
+<div class="row">
+  <div class="col-12 col-md-6">
+    <ngb-pagination
+      *ngIf="filteredProducts$ | async as product"
+      [collectionSize]="product.length"
+      [(page)]="page"
+      [maxSize]="4"
+      [pageSize]="pageSize"
+      (pageChange)="pagination$.next(null)"
+    >
+    </ngb-pagination>
+  </div>
+
+  <div class="col-12 ml-md-auto col-md-3 col-xl-2">
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Limit</span>
+        </div>
+        <input
+          style="width: 5rem"
+          [(ngModel)]="pageSize"
+          type="number"
+          class="form-control"
+          [min]="0"
+          (ngModelChange)="pagination$.next(null)"
+        />
       </div>
-      <input
-        style="width: 5rem"
-        [(ngModel)]="pageSize"
-        type="number"
-        class="form-control"
-        [min]="0"
-        (ngModelChange)="pagination$.next(null)"
-      />
     </div>
   </div>
 </div>
+
 <div class="table-responsive">
   <table class="table">
     <thead>
       <tr>
         <th>Name</th>
-        <th>Category</th>
+        <th style="width: 200px">Category</th>
         <th>Price</th>
         <th></th>
       </tr>
@@ -53,16 +59,18 @@
         <td>{{ product.category }}</td>
         <td>{{ product.price | currency: 'USD' }}</td>
         <td class="text-right">
-          <a [routerLink]="[product.$key]" class="btn btn-outline-success"
-            >Edit</a
-          >
-          <button
-            (click)="delete(product.$key)"
-            type="button"
-            class="btn btn-outline-danger"
-          >
-            Delete
-          </button>
+          <div style="width: 150px">
+            <a [routerLink]="[product.$key]" class="btn btn-outline-success"
+              >Edit</a
+            >
+            <button
+              (click)="delete(product.$key)"
+              type="button"
+              class="btn btn-outline-danger"
+            >
+              Delete
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>

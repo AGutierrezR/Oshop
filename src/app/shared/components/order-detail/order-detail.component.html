@@ -1,10 +1,13 @@
 <h2>Order Detail</h2>
-<p>Order date: {{ order.datePlaced | date }} | Order nº: {{ orderId }}</p>
+<p>
+  Order date: {{ order.datePlaced | date }} |
+  <span class="d-block d-md-inline">Order nº: {{ orderId }}</span>
+</p>
 <div class="row">
-  <div class="col-6">
+  <div class="col-12 col-md-6 order-1">
     <order-general [order]="order"></order-general>
   </div>
-  <div class="col-6">
+  <div class="col-12 col-md-6 mb-4 order-md-1">
     <order-summary [order]="order"></order-summary>
   </div>
 </div>

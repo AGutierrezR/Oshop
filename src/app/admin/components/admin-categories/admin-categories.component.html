@@ -16,17 +16,19 @@
         <td>{{ category.name }}</td>
         <td>{{ category.count }}</td>
         <td class="text-right">
-          <a (click)="openEdit(category)" class="btn btn-outline-success"
-            >Edit</a
-          >
-          <button
-            (click)="delete(category.$key)"
-            type="button"
-            class="btn btn-outline-danger"
-            [disabled]="category.count > 0"
-          >
-            Delete
-          </button>
+          <div style="width: 150px">
+            <a (click)="openEdit(category)" class="btn btn-outline-success"
+              >Edit</a
+            >
+            <button
+              (click)="delete(category.$key)"
+              type="button"
+              class="btn btn-outline-danger"
+              [disabled]="category.count > 0"
+            >
+              Delete
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>
