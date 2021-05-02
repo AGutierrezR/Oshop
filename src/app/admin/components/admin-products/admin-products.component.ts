@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Product } from '@core/models/product';
+import { CategoryService } from '@core/services/category.service';
 import { ProductService } from '@core/services/product.service';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -8,20 +10,41 @@ import { map, startWith } from 'rxjs/operators';
   selector: 'admin-products',
   templateUrl: './admin-products.component.html',
 })
-export class AdminProductsComponent implements OnInit {
-  products$ = this.productService.getAll();
+export class AdminProductsComponent {
   filter: FormControl = new FormControl('');
-  filter$: Observable<string> = this.filter.valueChanges.pipe(startWith(''));
+  filterValue$: Observable<string> = this.filter.valueChanges.pipe(
+    startWith('')
+  );
   pagination$ = new BehaviorSubject(null);
-  filteredProducts$ = combineLatest([this.products$, this.filter$]).pipe(
+  page = 1;
+  pageSize = 5;
+
+  productsWithCategory$: Observable<Product[]> = combineLatest([
+    this.productService.getAll(),
+    this.categoryService.getAll(),
+  ]).pipe(
+    map(([products, categories]) =>
+      products.map((p) => {
+        const categoryName = categories.find((c) => c.$key === p.category).name;
+        return { ...p, category: categoryName };
+      })
+    )
+  );
+
+  filteredProducts$: Observable<Product[]> = combineLatest([
+    this.productsWithCategory$,
+    this.filterValue$,
+  ]).pipe(
     map(([products, query]) =>
       products.filter(
         (product) =>
-          product.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
+          product.title.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
+          product.category.toLowerCase().indexOf(query.toLowerCase()) !== -1
       )
     )
   );
-  productsPerPage$ = combineLatest([
+
+  productsPerPage$: Observable<Product[]> = combineLatest([
     this.filteredProducts$,
     this.pagination$,
   ]).pipe(
@@ -33,12 +56,10 @@ export class AdminProductsComponent implements OnInit {
     )
   );
 
-  page = 1;
-  pageSize = 5;
-
-  constructor(private productService: ProductService) {}
-
-  ngOnInit(): void {}
+  constructor(
+    private productService: ProductService,
+    private categoryService: CategoryService
+  ) {}
 
   delete(id: string): void {
     if (!confirm('Are you sure you want to delete this product?')) {
