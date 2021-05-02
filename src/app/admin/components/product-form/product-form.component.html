@@ -90,11 +90,7 @@
           <span *ngIf="imageUrl.errors?.url">Please enter a valid URL.</span>
         </div>
       </div>
-      <div>
-        <button class="btn btn-primary" [disabled]="!f.valid">Save</button>
-        <button type="button" class="btn btn-warning" (click)="cancel()">
-          Cancel
-        </button>
+      <div class="d-flex">
         <button
           *ngIf="id"
           type="button"
@@ -103,6 +99,12 @@
         >
           Delete
         </button>
+        <span class="ml-auto">
+          <button class="btn btn-primary" [disabled]="!f.valid">Save</button>
+          <button type="button" class="btn btn-warning" (click)="cancel()">
+            Cancel
+          </button>
+        </span>
       </div>
     </form>
   </div>
