@@ -16,7 +16,6 @@ import { map } from 'rxjs/operators';
 export class AdminCategoriesComponent {
   @ViewChild('content', { static: false }) modal;
   categoryName: FormControl = new FormControl('');
-  closeResult = '';
   modalTitle: string;
 
   categories$: Observable<ProductCategory[]> = combineLatest([
