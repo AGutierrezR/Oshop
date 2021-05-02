@@ -1,0 +1,77 @@
+<h1>Categories List</h1>
+{{ closeResult }}
+<p>
+  <a (click)="openCreate()" class="btn btn-primary">New Category</a>
+</p>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Items</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories$ | async">
+        <td>{{ category.name }}</td>
+        <td>{{ category.count }}</td>
+        <td class="text-right">
+          <a (click)="openEdit(category)" class="btn btn-outline-success"
+            >Edit</a
+          >
+          <button
+            (click)="delete(category.$key)"
+            type="button"
+            class="btn btn-outline-danger"
+            [disabled]="category.count > 0"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ this.modalTitle }}</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="name">Category Name</label>
+      <div class="input-group">
+        <input
+          #name
+          [formControl]="categoryName"
+          type="text"
+          class="form-control"
+          ngbAutofocus
+          required
+        />
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary"
+      [disabled]="!name.value"
+      (click)="modal.close(name.value)"
+    >
+      Save
+    </button>
+    <button type="button" class="btn btn-warning" (click)="modal.dismiss()">
+      Cancel
+    </button>
+  </div>
+</ng-template>

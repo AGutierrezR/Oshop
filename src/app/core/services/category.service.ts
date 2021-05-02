@@ -4,9 +4,10 @@ import { toObjectWithKey } from '@core/utils/toObjectWithKey';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-interface ProductCategory {
-  $key: string;
+export interface ProductCategory {
+  $key?: string;
   name: string;
+  count?: number;
 }
 
 @Injectable({
@@ -15,6 +16,12 @@ interface ProductCategory {
 export class CategoryService {
   constructor(private db: AngularFireDatabase) {}
 
+  create(category: ProductCategory): void {
+    this.db
+      .list('/categories')
+      .set(category.name.toLowerCase().replace(' ', ''), category);
+  }
+
   getAll(): Observable<ProductCategory[]> {
     return this.db
       .list('/categories', (ref) => {
@@ -22,5 +29,13 @@ export class CategoryService {
       })
       .snapshotChanges()
       .pipe(map(toObjectWithKey));
+  }
+
+  update(id: string, category: ProductCategory): Promise<void> {
+    return this.db.object('/categories/' + id).update(category);
+  }
+
+  delete(id: string): Promise<void> {
+    return this.db.object('/categories/' + id).remove();
   }
 }

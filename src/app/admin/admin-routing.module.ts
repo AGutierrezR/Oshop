@@ -28,6 +28,11 @@ const routes: Routes = [
     canActivate: [AuthGuard, AdminAuthGuard],
   },
   {
+    path: 'categories',
+    component: AdminCategoriesComponent,
+    canActivate: [AuthGuard, AdminAuthGuard],
+  },
+  {
     path: 'orders',
     component: OrderListComponent,
     canActivate: [AuthGuard, AdminAuthGuard],
