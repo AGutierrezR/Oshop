@@ -1,6 +1,7 @@
 import { AdminProductsComponent } from '@admin/components/admin-products/admin-products.component';
 import { ProductFormComponent } from '@admin/components/product-form/product-form.component';
 import { AdminOrdersResolver } from '@admin/services/admin-orders.resolver';
+import { AdminProductResolver } from '@admin/services/admin-product.resolver';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminAuthGuard } from '@core/guards/admin-auth.guard';
@@ -19,6 +20,7 @@ const routes: Routes = [
     path: 'products/:id',
     component: ProductFormComponent,
     canActivate: [AuthGuard, AdminAuthGuard],
+    resolve: { product: AdminProductResolver },
   },
   {
     path: 'products',
@@ -42,6 +44,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [AdminOrdersResolver],
+  providers: [AdminOrdersResolver, AdminProductResolver],
 })
 export class AdminRoutingModule {}

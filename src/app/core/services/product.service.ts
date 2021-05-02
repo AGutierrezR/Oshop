@@ -2,28 +2,17 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Product } from '@core/models/product';
 import { toObjectWithKey } from '@core/utils/toObjectWithKey';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-
-const initialState = {
-  title: null,
-  price: 0,
-  category: null,
-  imageUrl: null,
-};
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private productSubject = new BehaviorSubject<Product>({ ...initialState });
-  productStore$ = this.productSubject.asObservable();
-
   constructor(private db: AngularFireDatabase) {}
 
   create(product: Product): void {
     this.db.list('/products').push(product);
-    this.setInitialState();
   }
 
   getAll(): Observable<Product[]> {
@@ -33,12 +22,11 @@ export class ProductService {
       .pipe(map(toObjectWithKey));
   }
 
-  get(id: string): void {
-    this.db
+  get(id: string): Observable<Product> {
+    return this.db
       .object<Product>('/products/' + id)
       .valueChanges()
-      .pipe(first())
-      .subscribe((product) => this.productSubject.next(product));
+      .pipe(first());
   }
 
   update(id: string, product: Product): Promise<void> {
@@ -47,9 +35,5 @@ export class ProductService {
 
   delete(id: string): Promise<void> {
     return this.db.object('/products/' + id).remove();
-  }
-
-  setInitialState(): void {
-    this.productSubject.next({ ...initialState });
   }
 }

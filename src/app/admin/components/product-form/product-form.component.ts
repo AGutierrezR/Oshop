@@ -11,7 +11,8 @@ import { ProductService } from '@core/services/product.service';
 })
 export class ProductFormComponent implements OnInit {
   @ViewChild(NgForm) productForm: NgForm;
-  title = 'Create Product';
+  PageTitle = 'Create Product';
+  product = new Product();
   categories$ = this.categoryService.getAll();
   id: string;
 
@@ -23,10 +24,11 @@ export class ProductFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
-    if (this.id) {
-      this.title = 'Edit Product';
-      this.productService.get(this.id);
+    const product = this.route.snapshot.data['product'];
+    if (product) {
+      this.PageTitle = 'Edit Product';
+      this.id = this.route.snapshot.paramMap.get('id');
+      this.product = new Product(product);
     }
   }
 
@@ -46,7 +48,6 @@ export class ProductFormComponent implements OnInit {
 
   cancel(): void {
     this.router.navigate(['/admin/products']);
-    this.productService.setInitialState();
   }
 
   delete(): void {
@@ -55,6 +56,5 @@ export class ProductFormComponent implements OnInit {
     }
     this.productService.delete(this.id);
     this.router.navigate(['/admin/products']);
-    this.productService.setInitialState();
   }
 }

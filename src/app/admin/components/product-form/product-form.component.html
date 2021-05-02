@@ -1,5 +1,5 @@
-<h1>{{ title }}</h1>
-<div class="row" *ngIf="productService.productStore$ | async as product">
+<h1>{{ PageTitle }}</h1>
+<div class="row">
   <div class="col-md-6">
     <form #f="ngForm" (ngSubmit)="save(f.value)">
       <div class="form-group">
