@@ -1,3 +1,4 @@
+<h1>{{ title }}</h1>
 <div class="row" *ngIf="productService.productStore$ | async as product">
   <div class="col-md-6">
     <form #f="ngForm" (ngSubmit)="save(f.value)">

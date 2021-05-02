@@ -11,6 +11,7 @@ import { ProductService } from '@core/services/product.service';
 })
 export class ProductFormComponent implements OnInit {
   @ViewChild(NgForm) productForm: NgForm;
+  title = 'Create Product';
   categories$ = this.categoryService.getAll();
   id: string;
 
@@ -24,6 +25,7 @@ export class ProductFormComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
+      this.title = 'Edit Product';
       this.productService.get(this.id);
     }
   }
