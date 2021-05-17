@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { Product } from '@core/models/product';
+import { Product } from '@core/models/product.model';
 import { toObjectWithKey } from '@core/utils/toObjectWithKey';
 import { Observable } from 'rxjs';
 import { first, map, shareReplay } from 'rxjs/operators';

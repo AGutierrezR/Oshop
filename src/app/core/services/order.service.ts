@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { Order } from '@core/models/order';
+import { Order } from '@core/models/order.model';
 import { ShoppingCartService } from '@core/services/shopping-cart.service';
 import { toObjectWithKey } from '@core/utils/toObjectWithKey';
 import { Observable } from 'rxjs';

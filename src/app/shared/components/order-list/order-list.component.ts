@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Order } from '@core/models/order';
+import { Order } from '@core/models/order.model';
 
 @Component({
   selector: 'order-list',

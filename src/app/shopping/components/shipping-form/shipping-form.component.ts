@@ -1,9 +1,9 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Order } from '@core/models/order';
-import { Shipping } from '@core/models/shipping';
-import { ShoppingCart } from '@core/models/shopping-cart';
+import { Order } from '@core/models/order.model';
+import { Shipping } from '@core/models/shipping.model';
+import { ShoppingCart } from '@core/models/shopping-cart.model';
 import { AuthService } from '@core/services/auth.service';
 import { OrderService } from '@core/services/order.service';
 import { take } from 'rxjs/operators';

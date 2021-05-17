@@ -1,6 +1,6 @@
-import { OrderItem } from '@core/models/order-item';
-import { Shipping } from '@core/models/shipping';
-import { ShoppingCart } from '@core/models/shopping-cart';
+import { OrderItem } from '@core/models/order-item.model';
+import { Shipping } from '@core/models/shipping.model';
+import { ShoppingCart } from '@core/models/shopping-cart.model';
 
 export class Order {
   $key: string;

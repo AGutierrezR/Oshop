@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Product } from '@core/models/product';
+import { Product } from '@core/models/product.model';
 import { CategoryService } from '@core/services/category.service';
 import { ProductService } from '@core/services/product.service';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';

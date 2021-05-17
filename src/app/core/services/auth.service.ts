@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppUser } from '@core/models/app-user';
+import { AppUser } from '@core/models/app-user.model';
 import { UserService } from '@core/services/user.service';
 import firebase from 'firebase/app';
 import { Observable, of } from 'rxjs';

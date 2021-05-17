@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AppUser } from '@core/models/app-user';
+import { AppUser } from '@core/models/app-user.model';
 import { AuthService } from '@core/services/auth.service';
 import { ShoppingCartService } from '@core/services/shopping-cart.service';
 import { Observable } from 'rxjs';

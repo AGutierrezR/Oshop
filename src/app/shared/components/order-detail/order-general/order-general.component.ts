@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Order } from '@core/models/order';
+import { Order } from '@core/models/order.model';
 
 @Component({
   selector: 'order-general',

@@ -4,7 +4,7 @@ import {
   Resolve,
   RouterStateSnapshot,
 } from '@angular/router';
-import { Order } from '@core/models/order';
+import { Order } from '@core/models/order.model';
 import { OrderService } from '@core/services/order.service';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';

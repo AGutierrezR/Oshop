@@ -4,7 +4,7 @@ import {
   Resolve,
   RouterStateSnapshot,
 } from '@angular/router';
-import { Product } from '@core/models/product';
+import { Product } from '@core/models/product.model';
 import { ProductService } from '@core/services/product.service';
 import { Observable } from 'rxjs';
 

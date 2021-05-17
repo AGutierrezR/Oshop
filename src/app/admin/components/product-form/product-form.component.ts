@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from '@core/models/product';
+import { Product } from '@core/models/product.model';
 import { CategoryService } from '@core/services/category.service';
 import { ProductService } from '@core/services/product.service';
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from '@core/models/product';
-import { ShoppingCart } from '@core/models/shopping-cart';
+import { Product } from '@core/models/product.model';
+import { ShoppingCart } from '@core/models/shopping-cart.model';
 import { ProductService } from '@core/services/product.service';
 import { ShoppingCartService } from '@core/services/shopping-cart.service';
 import { combineLatest, Observable } from 'rxjs';
