@@ -1,4 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '@core/models/product';
@@ -8,6 +13,7 @@ import { ProductService } from '@core/services/product.service';
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductFormComponent implements OnInit {
   @ViewChild(NgForm) productForm: NgForm;

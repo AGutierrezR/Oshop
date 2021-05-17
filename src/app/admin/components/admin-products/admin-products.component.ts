@@ -28,13 +28,11 @@ export class AdminProductsComponent {
       for (const category of categories) {
         memo[category.$key] = category.name;
       }
-
       return products.map((p) => {
         return { ...p, category: memo[p.category] };
       });
     })
   );
-
   filteredProducts$: Observable<Product[]> = combineLatest([
     this.productsWithCategory$,
     this.filterValue$,

@@ -1,3 +1,4 @@
+import { AdminCategoriesComponent } from '@admin/components/admin-categories/admin-categories.component';
 import { AdminProductsComponent } from '@admin/components/admin-products/admin-products.component';
 import { ProductFormComponent } from '@admin/components/product-form/product-form.component';
 import { AdminOrdersResolver } from '@admin/services/admin-orders.resolver';
