@@ -29,7 +29,10 @@ export class OrderService {
   }
 
   getOrderById(orderId): Observable<Order> {
-    return this.db.object<Order>('/orders/' + orderId).valueChanges();
+    return this.db
+      .object<Order>('/orders/' + orderId)
+      .valueChanges()
+      .pipe(map((x) => new Order(x.userId, x.shipping, x.items)));
   }
 
   placeOrder(order: Order): any {

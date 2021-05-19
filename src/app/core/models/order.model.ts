@@ -8,25 +8,32 @@ export class Order {
   items: OrderItem[];
   totalPrice: number;
 
+  get totalItemsCount(): number {
+    return this.items.reduce((acc, item) => item.quantity + acc, 0);
+  }
+
   constructor(
     public userId: string,
     public shipping: Shipping,
-    shoppingCart: ShoppingCart
+    items: ShoppingCart | OrderItem[]
   ) {
     this.datePlaced = new Date().getTime();
 
-    this.items = shoppingCart.items.map((i) => {
-      return {
-        product: {
-          title: i.title,
-          imageUrl: i.imageUrl,
-          price: i.price,
-        },
-        quantity: i.quantity,
-        totalPrice: i.totalPrice,
-      };
-    });
-
-    this.totalPrice = shoppingCart.totalPrice;
+    if ('items' in items) {
+      this.items = items.items.map((i) => {
+        return {
+          product: {
+            title: i.title,
+            imageUrl: i.imageUrl,
+            price: i.price,
+          },
+          quantity: i.quantity,
+          totalPrice: i.totalPrice,
+        };
+      });
+      this.totalPrice = items.totalPrice;
+    } else {
+      this.items = items;
+    }
   }
 }
